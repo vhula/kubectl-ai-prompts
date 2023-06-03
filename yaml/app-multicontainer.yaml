@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-debian-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-debian
+  template:
+    metadata:
+      labels:
+        app: nginx-debian
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      - name: debian
+        image: debian
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: demo
+    run: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+      run: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+        run: demo
+    spec:
+      containers:
+      - name: app
+        image: gcr.io/k8s-k3s/demo:v1.0.0
+        ports:
+        - name: http
+          containerPort: 80
